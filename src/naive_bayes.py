@@ -1,6 +1,7 @@
 import csv
 from pathlib import Path
 from collections import defaultdict
+from math import log10
 
 
 class GaussianNB:
@@ -102,3 +103,15 @@ class GaussianNB:
             print("Done!")
         else:
             raise FileNotFoundError("Training set missing.")
+
+    def predict(self, text):
+        score_yes = log10(self.priors["yes"])
+        score_no = log10(self.priors["no"])
+        for word in text.lower().split():
+            if word in self.vocabulary:
+                score_yes += log10(self.conditionals["yes"][word])
+                score_no += log10(self.conditionals["no"][word])
+        if score_yes > score_no:
+            return "yes", score_yes
+        else:
+            return "no", score_no
