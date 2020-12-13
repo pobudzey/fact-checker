@@ -1,5 +1,5 @@
 # fact-checker
-Fact checker for tweets related to COVID-19
+Fact checker for tweets related to COVID-19  
 https://github.com/pobudzey/fact-checker
 
 # Instructions
