@@ -3,7 +3,7 @@ from naive_bayes import GaussianNB
 from pathlib import Path
 from sklearn.metrics import classification_report
 
-clf = GaussianNB()
+clf = GaussianNB("filtered")
 
 # Building trace file
 trace_data = []
@@ -41,10 +41,10 @@ else:
 output_dir = Path.cwd().parent / "output"
 output_dir.mkdir(parents=True, exist_ok=True)
 if output_dir.exists():
-    with open(output_dir / "trace_NB-BOW-OV.txt", "w") as f:
+    with open(output_dir / "trace_NB-BOW-FV.txt", "w") as f:
         for row in trace_data:
             f.write(f"{row[0]}  {row[1]}  {row[2]}  {row[3]} {row[4]}\n")
-    with open(output_dir / "eval_NB-BOW-OV.txt", "w") as f:
+    with open(output_dir / "eval_NB-BOW-FV.txt", "w") as f:
         report = classification_report(
             expected_categories, predicted_categories, output_dict=True
         )
